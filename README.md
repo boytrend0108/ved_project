@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # ved_front
+=======
+# ved_project
+>>>>>>> 3f997731ad02d7bcc6c8d1f490b3fb3d60bfdbba
 
 ## Project setup
 ```
