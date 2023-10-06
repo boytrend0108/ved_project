@@ -1,0 +1,617 @@
+
+// background-color: #F5F5FC;
+
+// #region FORM
+@mixin form__question{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color:$btn-color;
+  text-decoration: none;
+  padding: 0.5rem;
+
+  @media (max-width: 600px) {
+    background-color: #F5F5FC;
+    display: block;
+  }
+}
+
+@mixin form {
+  padding: 6rem 5.2rem 3rem 5.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  // width: 49.5rem;
+
+  @media (max-width: 600px) {
+    background-color: #F5F5FC;
+    padding: 3rem 0 3rem 0;
+    padding-top: 3rem;
+  }
+}
+
+@mixin form-label {
+  margin: 1rem 0;
+  color: #416782;
+  display: inline;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+@mixin form-title { // title for form and dialog window
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+  color: #244156;
+  margin-bottom: 3rem;
+  text-align: left;
+
+  @media (max-width: 600px) {
+    @include font(2rem, 600, #244156 );
+    line-height: 2.7rem;
+    margin-bottom: 0rem !important;
+    padding: 1.5rem 0;
+    margin: 0 auto;
+  }
+}
+
+@mixin formBox{ // контейнер для формы в диалоговом окне
+  @include flex(column, space-between, flex-start, 0);
+  padding: 4.5rem 5.4rem 4.5rem 5.4rem;
+  max-width: 600px;
+  position: relative;
+  height: fit-content;
+
+  @media (max-width: 600px) {
+     padding: 2rem 1.5rem;
+     min-height: 100vh;
+     width: 100%;
+     justify-content: space-between;
+     align-items: center;
+  }
+}
+
+@mixin successSubscribe {
+  @include flex(column, center, center, 1.2rem);
+  height: 41.2rem;
+  background: #FFFFFF;
+  box-shadow: 0px 5px 20px rgba(6, 21, 43, 0.15);
+  border-radius: 1rem;
+  padding: 4.5rem;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+    padding: 0;
+    gap: 0;
+    padding: 1rem;
+  }
+}
+
+@mixin form-msg {
+  @include font(3.2rem, 600, $font-color2);
+  line-height: 3.8rem;
+  margin: 4.5rem 0 4.5rem;
+
+  @media (max-width: 600px) {
+    @include font(2rem, 600, $font-color2);
+    line-height: 2.7rem;
+    margin: 3rem 0 2rem 0;
+  }
+}
+
+@mixin eye {
+  position:absolute;
+  top: 5.2rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  color:$main-color;
+  cursor: pointer;
+
+  @media (max-width:600px) {
+   top: 46px; 
+  }
+}
+
+// #endregion
+
+// #region DIALOG
+
+@mixin dialog__content{
+  margin: auto;
+  background-color: #fff;
+  border-radius: 1.2rem;
+  min-height: 10rem;
+  max-width: 49.5rem;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+  width: 100%;
+
+  @media (max-width: 600px) {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+@mixin my-window{ // dialog-window
+  width: 49.5rem;
+  background: hsl(0, 0%, 100%);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 5rem 4.6rem 5rem;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+@mixin my-dialog {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  @include flex (column, center, center, 0);
+  z-index: 1;
+
+  @media (max-width:600px) {
+    background: #fff;
+  }
+}
+
+// #endregion
+
+// #region TITLES
+@mixin title_h2 {
+  font-weight: 600;
+  font-size: 3.2rem;
+  line-height: 3.8rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #244156;
+  text-align: left;
+
+  @media (max-width:600px) {
+   @include font(2.4rem, 600, #244156 );
+   line-height: 2.3rem;
+  }
+}
+
+@mixin title_h3 {
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 3rem;
+  color: #244156;
+
+  @media (max-width:600px) {
+    @include font(1.7rem, 600, #244156);
+    line-height: 2.3rem;
+    margin-bottom: .5rem;
+  }
+}
+
+@mixin ariaTitle {
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 3rem;
+  color: #244156;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+@mixin inputTitle {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
+  text-align: center;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #339DFF;
+}
+
+@mixin selector__title {
+  font-weight: 600;
+  font-size: 3.2rem;
+  line-height: 3.8rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #244156;
+  margin-bottom:3rem;
+  margin-top: 2rem;
+  text-align: left;
+
+  @media (max-width:600px) {
+    @include font(2rem, 600, #244156);
+    line-height: 2.7rem;
+  }
+}
+
+// #endregion
+
+// #region INPUTS 
+@mixin text-area {
+  width: 100%;
+  height: 15.5rem;
+  background-color: $bg-color;
+  @include font (1.7rem, 500, #244156 );
+  line-height: 2.6rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  outline: none;
+  border: none;
+  border-radius: 1rem;
+  padding: 1.2rem 2rem;
+
+  @media (max-width:600px) {
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+  }
+}
+
+@mixin input{
+  @include font (1.7rem, 500, #244156 );
+  line-height: 2.6rem;
+  background: #EEEEF0;
+  border-radius: 1rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 12px 2rem;
+  height: 5rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+
+  @media (max-width:600px) {
+    height: 40px;
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+  }
+}
+
+@mixin input-box{
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%
+}
+
+@mixin input-login {
+  @include font (1.7rem, 500, $font-color2);
+  width: 100%;
+  height: 5.2rem;
+  border: 2px solid #D9E1E7;
+  border-radius: 1rem;
+  background-color: #fff;
+  display: block;
+  line-height: 2.6rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  padding: 0.7rem 1.25rem;
+  outline: none;
+
+  @media (max-width:600px) {
+    height: 40px;
+    @include font (1.4rem, 500, $font-color2);
+    line-height: 1.9rem;
+  }
+}
+
+@mixin selector__li{
+  padding: 0.8rem 3rem;
+  width: fit-content;
+  height: 4.2rem;
+  background: #F1F4FA;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 1.7rem;
+  line-height: 2.6rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #416782;
+  cursor: pointer;
+}
+
+// #endregion
+
+// #region NOTES
+@mixin note {
+  font-weight: 500;
+  font-size: 1.7rem;
+  line-height: 2.6rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #416782;
+  text-align: left;
+
+  @media (max-width:600px) {
+    @include font(1.4rem, 500, $font-color2);
+    line-height: 1.9rem;
+  }
+}
+
+@mixin note-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+@mixin description__notebox {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 4.5rem;
+
+  @media (max-width:600px) {
+    margin-bottom: 3rem;
+  }
+}
+
+// #endregion
+
+// #region DOWNLOAD
+@mixin download__img{
+  width: 6rem;
+
+  @media (max-width:600px) {
+    width: 3.4rem;
+  }
+}
+
+
+@mixin UploadAndDownloadBox{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+
+  @media (max-width:600px) {
+    width: 100%;
+  }
+} 
+
+@mixin uploadCompBox{ // box для 2 элементов (до и после загрузки)
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width:600px) {
+    width: 100%;
+  }
+}
+
+
+
+@mixin download__input{
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  right: 100px;
+}
+
+@mixin download__box{
+  display: flex;
+
+  @media (max-width:600px) {
+    @include flex(column, center, flex-start, 1rem);
+  }
+}
+
+@mixin download-bottom{
+  display: flex;
+  gap: 3.2rem;
+  margin-top: 4.5rem;
+  flex-wrap: wrap;
+
+  @media (max-width:600px) {
+    justify-content: center;
+    gap: 1.5rem;
+  }
+}
+
+@mixin download__box-bottom{
+  max-width: 33.5rem;
+  width: 100%;
+
+  @media (max-width:600px) {
+    max-width: none;
+  }
+}
+
+@mixin downloadAria {
+  max-width: 33.5rem;
+  height: 15.5rem;
+  border: 2px dashed #339DFF;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  margin-top: 2rem;
+
+  @media (max-width:600px) {
+    height: 100px;
+  }
+}
+
+@mixin downloadAria-done{
+  max-width: 33.5rem;
+  height: 15.5rem;
+  background-color: #EEEEF0;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+
+  @media (max-width:600px) {
+    height: 100px;
+  }
+}
+
+// #endregion
+
+// #region FONTS
+@mixin font ($fs, $fw, $color) {
+  font-size: $fs;
+  font-weight: $fw;
+  color: $color;
+  line-height: 2.1rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+// #endregion
+
+// #region FLEX--------------
+@mixin flex($dir,$jc,$ai,$gap){
+   display: flex;
+   flex-direction: $dir;
+   justify-content: $jc;
+   align-items: $ai;
+   gap:$gap;
+}
+
+// #endregion 
+
+// #region ICON----------
+@mixin fa-xmark { 
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 5; 
+  padding: 1.5rem;
+
+  @media (max-width:600px) {
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+@mixin hr{
+  height: 2px;
+  width: 100%;
+  margin: 5.2rem 0 4.5rem 0;
+  border: none;
+  background: #D9E1E7;
+
+  @media (max-width: 600px) {
+    margin: 1.5rem 0 !important;
+  }
+}
+
+@mixin icon-edit {
+  min-width: 2rem;
+  min-height: 2rem;
+  color: $main-color;
+  padding: 1.5rem;
+  cursor: pointer;
+}
+
+// #endregion
+
+// #region DropDown
+
+@mixin dropDown{ // для вывода подсказок по фирмам и банкам
+  margin-top: 1rem;
+  background: #FFFFFF;
+  box-shadow: 0px .5rem 2rem rgba(36, 65, 86, 0.15);
+  border-radius: 1rem;
+  list-style: none;
+  width: 100%;
+  @include flex(column, center, centre, 0)
+}
+
+@mixin dropDownItem{ // подсказка из dropDown
+  @include font(1.7rem, 500, $font-color2);
+  line-height: 2.6rem;
+  text-align: left;
+  cursor: pointer;
+  height: 5rem;
+  padding-left: 2rem;
+  @include flex(row, flex-start, center, 0);
+   &:hover {
+    background: #F5F5F7;
+   }
+}
+
+// #endregion
+
+// #region application
+@mixin header__top {
+  @include flex(row, space-between, flex-start, 1rem);
+  margin-bottom: 1rem;
+}
+
+@mixin application__wrapper {
+  @include flex (row, flex-start, flex-start, 2rem);
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+// #endregion
+
+@mixin preloaderWindow {
+  position: fixed;
+  inset: 0;
+  background-color: black;
+  opacity: 50%;
+  @include flex(row, center, center, 0);
+}
+
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+}
+
+@mixin contractComp {
+  margin-bottom: 4.5rem;
+
+  @media (max-width: 600px) {
+    margin-bottom: 3rem;
+  }
+}
+
+
+@mixin container {
+  padding: 0 2rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 600px) {
+    padding: 0 1.5rem;
+  }
+}
+
+@mixin info {
+  width: 2rem;
+  margin-right: 1.6rem;
+}
+
+@mixin placeholder{
+  font-weight: 500;
+  font-size: 1.7rem;
+  line-height: 2.6rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #809FB8;
+}
+
+@mixin disabled{ 
+  opacity: 0.5;
+  cursor:not-allowed !important; 
+}
+
+@mixin invalid{
+  border: 1px solid red !important;
+  background-color: #ffc0cb6e !important;
+}

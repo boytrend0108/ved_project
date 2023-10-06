@@ -1,0 +1,24 @@
+@mixin successMsg {
+  @include font(1.7rem, 600, $main-color);
+}
+
+@mixin errorMsg {
+  @include font (1.5rem, 600, #dd0808);
+  line-height: 2.1rem;
+
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+  }
+}
+
+@mixin warningMsg {
+  font-size: 1.8rem;
+  color: white;
+  background: $main-color;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  text-align: left;
+  -webkit-box-shadow: 1rem 1rem 16px -11px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 1rem 1rem 16px -11px rgba(0, 0, 0, 1);
+  box-shadow: 1rem 1rem 16px -11px rgba(0, 0, 0, 1);
+}

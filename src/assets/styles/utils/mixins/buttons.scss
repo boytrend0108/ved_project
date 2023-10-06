@@ -1,0 +1,100 @@
+//----BUTTONS------------
+
+@mixin radio-btn {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
+  color: #809FB8;
+  cursor: pointer;
+  background:none;
+  border: none;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  &:hover {
+    color:
+      #339DFF
+  }
+}
+@mixin btn {
+  margin-top: 2rem;
+}
+
+@mixin btn-no-border{ // button without borders
+    border: none;
+    background-color: white;
+    font-weight: 600;
+    font-size: 1.7rem;
+    line-height: 2.6rem;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #339DFF;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+@mixin myColorBtn($color, $bg-color, $border-color, $font-size: 2rem, $font-weight: 600, $line-height: 2.6rem) {
+    color:$color ;
+    background-color: $bg-color;
+    border-radius: 1rem;
+    border: 2px solid $border-color;
+    height: 5rem;
+    cursor: pointer;
+    padding: 1.2rem;
+    transition: 0.6s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: $font-weight;
+    font-size:  $font-size;
+    line-height: $line-height;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+
+
+    @media (max-width:600px) {
+      height: 4rem;
+      @include font(1.4rem, 600, $color);
+      line-height: 1.9 rem;
+    }
+}
+
+@mixin download__btn{
+  min-width: 16rem;
+  height: 16rem;
+  border: 2px dashed #339DFF;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  @media (max-width:600px) {
+    height: 8rem;
+    width: 8rem;
+    min-width: 8rem;
+  }
+}
+
+@mixin myBlueBtn {
+  color:#FFFF ;
+  background-color: $main-color;
+  border-radius: 1rem;
+  border: 2px solid $main-color;
+  width: fit-content;
+  height: 5rem;
+  cursor: pointer;
+  padding: 1.2rem;
+  font-size: 2rem;
+  transition: 0.6s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 600px) {
+    @include font (14px, 600, #FFFF );
+    height: 40px;
+    width: 100%;
+  }
+}

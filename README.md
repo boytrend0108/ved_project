@@ -1,4 +1,4 @@
-# delegad_front
+# ved_front
 
 ## Project setup
 ```

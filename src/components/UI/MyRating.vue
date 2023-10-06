@@ -1,0 +1,185 @@
+<template>
+  <div  class="rating__stars" @mouseleave="cleanStars">
+    <div 
+      v-for="i in 5" 
+      :key="i" 
+      @mouseover="paintStar" 
+      @click="selectStar"
+      class="star" 
+      :id="i"
+      >
+      <svg  width="30" height="29" viewBox="0 0 30 29" :fill="color" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21.4545 19.1512L21.4545 19.1512L21.456 19.1569L23.5089 27.2278C23.5089 27.2279 23.5089 27.228 23.5089 27.228C23.5251 27.292 23.5177 27.3355 23.506 27.3667C23.4925 27.4028 23.4668 27.438 23.4316 27.4647C23.3963 27.4914 23.3623 27.5017 23.3377 27.5034C23.3195 27.5046 23.289 27.5032 23.2407 27.4729C23.2404 27.4727 23.2401 27.4726 23.2399 27.4724L16.1555 22.9744L15.6189 23.8182L16.1549 22.974L16.1554 22.9743C15.8101 22.7547 15.4093 22.6381 15.0001 22.6381C14.5915 22.6381 14.1913 22.7544 13.8464 22.9734C13.8458 22.9737 13.8453 22.974 13.8448 22.9744L7.25104 27.1499L7.24918 27.1511C7.09861 27.2469 6.94546 27.2337 6.80919 27.1301C6.6698 27.0241 6.59144 26.8509 6.64554 26.6392L6.64596 26.6376L8.54441 19.1564L8.54568 19.1512C8.64658 18.7446 8.63054 18.3177 8.49941 17.9198C8.36854 17.5227 8.12836 17.1706 7.80644 16.9038C7.80581 16.9033 7.80517 16.9027 7.80454 16.9022L1.45157 11.6034L1.44995 11.602C1.40768 11.5669 1.38997 11.5328 1.38123 11.4996C1.37099 11.4607 1.37072 11.4107 1.38665 11.3592C1.40256 11.3078 1.42912 11.2723 1.45262 11.2524C1.47083 11.2371 1.49742 11.2212 1.55033 11.2177C1.55036 11.2177 1.5504 11.2177 1.55043 11.2177C1.55057 11.2177 1.55071 11.2177 1.55085 11.2177L9.84472 10.6835C10.2637 10.6584 10.6665 10.5121 11.004 10.2625C11.3389 10.0147 11.5953 9.67567 11.7425 9.28607L14.8326 1.50446C14.8362 1.49543 14.8397 1.48635 14.843 1.47722C14.8547 1.44498 14.8761 1.41712 14.9042 1.39743C14.9323 1.37775 14.9658 1.36719 15.0001 1.36719C15.0344 1.36719 15.0679 1.37775 15.096 1.39743C15.1241 1.41712 15.1455 1.44498 15.1572 1.47723C15.1606 1.48635 15.164 1.49543 15.1676 1.50446L18.2578 9.28615C18.405 9.6757 18.6613 10.0147 18.9963 10.2625L19.591 9.45853L18.9963 10.2625C19.3338 10.5121 19.7365 10.6584 20.1555 10.6835C20.1568 10.6836 20.158 10.6836 20.1592 10.6837L28.4494 11.2177C28.4495 11.2177 28.4497 11.2177 28.4498 11.2177C28.4498 11.2177 28.4499 11.2177 28.4499 11.2177C28.5028 11.2212 28.5294 11.2371 28.5476 11.2524C28.5711 11.2723 28.5977 11.3078 28.6136 11.3592C28.6295 11.4107 28.6292 11.4607 28.619 11.4996C28.6103 11.5328 28.5926 11.5669 28.5503 11.602L28.5487 11.6034L22.1957 16.9022C22.1952 16.9027 22.1946 16.9031 22.1941 16.9036C21.872 17.1704 21.6317 17.5226 21.5008 17.9198C21.3697 18.3177 21.3537 18.7446 21.4545 19.1512Z" stroke="#339DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { computed, defineEmits } from 'vue';
+const emit = defineEmits(['rating'])
+
+const color = computed(() => {
+  return "white"
+})
+let stars = []
+let isStarSelected = false
+
+
+function paintStar(event) {
+  stars = document.querySelectorAll(".star")
+  let index = event.currentTarget.id
+
+  stars.forEach(star => {
+    if (star.id <= index) star.firstChild.style.fill = "#339DFF"
+    else star.firstChild.style.fill = "white"
+
+    if (star.id === index) {
+      star.classList.add("bounce-top")
+    }
+    else {
+      star.classList.remove("bounce-top")
+    }
+  })
+
+}
+
+function cleanStars() {
+  stars = document.querySelectorAll(".star")
+  if (isStarSelected) return
+  stars.forEach(star => star.firstChild.style.fill = "white")
+}
+
+function selectStar(event) {
+  stars = document.querySelectorAll(".star")
+  let index = event.currentTarget.id
+  emit("rating", index)
+  isStarSelected = true
+  stars.forEach(star => {
+    star.firstChild.style.fill = "white"
+    if (star.id <= index) {
+      star.firstChild.style.fill = "#339DFF"
+    }
+  })
+}
+
+</script>
+
+<style lang="scss" scoped>
+ .rating__stars {
+  @include flex (row, flex-start, center, 0);
+  cursor: pointer;
+ }
+
+
+ .bounce-top {
+	-webkit-animation: bounce-top 0.9s both;
+	animation: bounce-top 1s both;
+}
+
+@-webkit-keyframes bounce-top {
+  0% {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  40% {
+    -webkit-transform: translateY(-1rem);
+            transform: translateY(-1rem);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  65% {
+    -webkit-transform: translateY(-8px);
+            transform: translateY(-8px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  82% {
+    -webkit-transform: translateY(-6px);
+            transform: translateY(-6px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  93% {
+    -webkit-transform: translateY(-4px);
+            transform: translateY(-4px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  25%,
+  55%,
+  75%,
+  87% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    opacity: 1;
+  }
+}
+@keyframes bounce-top {
+  0% {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  40% {
+    -webkit-transform: translateY(-1rem);
+            transform: translateY(-1rem);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  65% {
+    -webkit-transform: translateY(-8px);
+            transform: translateY(-8px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  82% {
+    -webkit-transform: translateY(-6px);
+            transform: translateY(-6px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  93% {
+    -webkit-transform: translateY(-4px);
+            transform: translateY(-4px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  25%,
+  55%,
+  75%,
+  87% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    opacity: 1;
+  }
+}
+
+</style>
